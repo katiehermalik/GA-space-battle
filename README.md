@@ -15,7 +15,7 @@ Topics: OOP console game<br>
 
 ![star wars](https://camo.githubusercontent.com/cffbbbbaf197f376c3d8462e7037b408365a52a7/687474703a2f2f7669676e65747465342e77696b69612e6e6f636f6f6b69652e6e65742f73746172776172732f696d616765732f362f36352f426174746c655f6f665f456e646f722e706e672f7265766973696f6e2f6c61746573743f63623d3230313231323136313635323339)
 
-This lab is an EXTRA to continue building your knowledge of OOP, loops, and functions to build a rudimentary **space battle** game. The game will be programmed for, and played in the browser console. You will need to use pop-up prompts to get user input.
+In order to continue building your knowledge of OOP, loops, and functions today you will build a rudimentary **space battle** game. The game will be programmed for, and played in the browser console. You will need to use pop-up prompts to get user input.
 
 Today's task is to **build something according to specification**. Pretend you have received the **specification** below for a class project. Planning your program is a challenge unto itself. START SIMPLE. Break the problem down as far as you can and don't move on until the smallest piece works.
 
