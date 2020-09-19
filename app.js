@@ -36,9 +36,11 @@ class Ship {
       if (this === ussAssembly) {
         alienShip[i].hull -= ussAssembly.firepower;
         console.log(`AlienShip${i+1} took ${ussAssembly.firepower} damage. It's hull is now: ${alienShip[i].hull}`);
+        return alienShip[i].hull;
       } else if (this === alienShip[i]) {
           ussAssembly.hull -= alienShip[i].firepower;
           console.log(`Your ship took ${alienShip[i].firepower} damage. Your hull is now: ${ussAssembly.hull}`);
+          return ussAssembly.hull;
       }
     } else {
       if (this === ussAssembly) {
@@ -74,7 +76,24 @@ console.log(ussAssembly);
 console.log(alienShip);
 
 for (var i = 0; i < alienShip.length; i++) {
-  ussAssembly.attack();
-  alienShip[i].attack();
+  let alienShipNewHull = ussAssembly.attack();
+  if (alienShipNewHull <= 0) {
+    console.log(`You destroyed AlienShip${i+1}!`);
+    let decision = prompt(`You destroyed AlienShip${i+1}! You won the battle, but not yet the war... Would you like to continue the fight?`, 'Attack or Retreat');
+    if (decision === 'Retreat') {
+      console.log('GAME OVER - The Aliens proved to be a formidable opponent.');
+      break;
+    } else if (decision === 'Attack') {
+    } else {
+      alert(`Please enter 'Attack' or 'Retreat'`);
+    }
+  } else {
+    let ussAssemblyNewHull = alienShip[i].attack();
+    if (ussAssemblyNewHull <= 0) {
+      console.log(`GAME OVER - Your ship was destroyed by AlienShip${i+1}`)
+    } else {
+      ussAssembly.attack();
+    }
+  } 
 }
 
