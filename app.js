@@ -20,3 +20,33 @@
 // if player is destroyed - Game Over - Aliens win
 // if player retreats - Game Over - Aliens win
 
+class Ship {
+  constructor (hull, firepower, accuracy) {
+    this.hull = hull;
+    this.firepower = firepower;
+    this.accuracy = accuracy;
+  }
+}
+
+class Player extends Ship {
+  constructor() {
+    super(20, 5, 0.7);
+  }
+}
+
+class Alien extends Ship {
+  constructor() {
+    super(Math.floor(Math.random() * (4) + 3), Math.floor(Math.random() * (3) + 2), (Math.random() * (.2) + .6).toFixed(1));
+  }
+}
+
+// Instantiate ship instances
+const ussAssembly = new Player();
+
+const alienShip = [];
+for (i = 0; i < 6; i++) {
+  alienShip.push(new Alien());
+}
+
+console.log(ussAssembly);
+console.log(alienShip);
