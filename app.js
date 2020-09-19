@@ -20,11 +20,33 @@
 // if player is destroyed - Game Over - Aliens win
 // if player retreats - Game Over - Aliens win
 
+
+// const ussAssembly = new Player();
+
+
 class Ship {
   constructor (hull, firepower, accuracy) {
     this.hull = hull;
     this.firepower = firepower;
     this.accuracy = accuracy;
+  }
+  attack() {
+    if (Math.random() < this.accuracy) {
+      console.log('It\'s a hit!');
+      if (this === ussAssembly) {
+        alienShip[i].hull -= ussAssembly.firepower;
+        console.log(`AlienShip${i+1} took ${ussAssembly.firepower} damage. It's hull is now: ${alienShip[i].hull}`);
+      } else if (this === alienShip[i]) {
+          ussAssembly.hull -= alienShip[i].firepower;
+          console.log(`Your ship took ${alienShip[i].firepower} damage. Your hull is now: ${ussAssembly.hull}`);
+      }
+    } else {
+      if (this === ussAssembly) {
+        console.log('You missed! Take cover!');
+      } else if (this === alienShip[i]) {
+        console.log(`AlienShip${i+1} missed! Take your best shot!`);
+      }
+    }
   }
 }
 
@@ -44,9 +66,15 @@ class Alien extends Ship {
 const ussAssembly = new Player();
 
 const alienShip = [];
-for (i = 0; i < 6; i++) {
+for (var i = 0; i < 6; i++) {
   alienShip.push(new Alien());
 }
 
 console.log(ussAssembly);
 console.log(alienShip);
+
+for (var i = 0; i < alienShip.length; i++) {
+  ussAssembly.attack();
+  alienShip[i].attack();
+}
+
