@@ -34,7 +34,7 @@ class Ship {
   checkHull() {
     if (this === ussAssembly) {
       if (alienShip[i].hull <= 0) {
-      console.log(`You destroyed AlienShip${i+1}!`);
+      console.log(`Congrats! You destroyed AlienShip${i+1}!`);
       return true;
       } else {
         return false;
@@ -42,8 +42,9 @@ class Ship {
       
     } else if (this === alienShip[i]) {
       if (ussAssembly.hull <= 0) {
-        console.log(`GAME OVER - Your ship was destroyed by AlienShip${i+1}`);
-        alert(`GAME OVER - Your ship was destroyed by AlienShip${i+1}`);
+        let alienVictory = `GAME OVER - Your ship was destroyed by AlienShip${i+1} :(`
+        console.log(alienVictory);
+        alert(alienVictory);
         return true;
       } else {
         return false;
@@ -93,35 +94,40 @@ for (var i = 0; i < 6; i++) {
 console.log(ussAssembly);
 console.log(alienShip);
 
+// Battle against each alien ship
 for (var i = 0; i < alienShip.length; i++) {
   while (alienShip[i].hull > 0 && ussAssembly.hull > 0) {
     ussAssembly.attack();
+    // checking to see if alienShip[i]'s hull is < 0
     if (ussAssembly.checkHull() === true) {
       continue;
     } else {
         alienShip[i].attack();
+         // checking to see if ussAssembly's hull is < 0
         if (alienShip[i].checkHull() === true) {
           break;
         }
       }
-
   } 
   if (promptNextRound() === false) {
     break;
   }
 }
 
+//Prompt for player to attack next alien ship or retreat
 function promptNextRound() {
-  let battleNum = `Battle #${i+2}`
-  if (battleNum === `Battle #7`) {
-    console.log(`VICTORY - You've destroyed all the alienShips!`)
-    alert(`VICTORY - You've destroyed all the alienShips!`)
+  let battleNum = `Battle #${i+2}`;
+  if (battleNum === `Battle #7` && ussAssembly.hull > 0) {
+    let victory = `VICTORY - You've destroyed all the alienShips!`
+    console.log(victory);
+    alert(victory);
   }
-  if (battleNum !== `Battle #7`) {
+  if (battleNum !== `Battle #7` && ussAssembly.hull > 0) {
     let decision = prompt(`You destroyed AlienShip${i+1}! You won the battle, but not yet the war... Would you like to continue the fight? Please enter 'Attack' or 'Retreat'`, 'Attack or Retreat');
     if (decision === 'Retreat') {
-      console.log('GAME OVER - The Aliens have proven to be a formidable opponent.');
-      alert('GAME OVER - The Aliens have proven to be a formidable opponent.');
+      let whiteFlag = 'GAME OVER - The Aliens have proven to be a formidable opponent.'
+      console.log(whiteFlag);
+      alert(whiteFlag);
       return false;
     } else if (decision === 'Attack') {
       console.log(battleNum);
@@ -132,8 +138,7 @@ function promptNextRound() {
         if (decision === 'Attack') {
           console.log(battleNum);
           break;
-        } else if (decision === 'Retreat')
-          break;
+        } else if (decision === 'Retreat') break;
       }
     }
   }
