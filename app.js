@@ -31,10 +31,10 @@ class Ship {
     this.accuracy = accuracy;
   }
   
-  checkHull() {
+  checkOpponentHull() {
     if (this === ussAssembly) {
       if (alienShip[i].hull <= 0) {
-      console.log(`Congrats! You destroyed AlienShip${i+1}!`);
+      console.log(`Congrats! You destroyed Alien Ship ${i+1}!`);
       return true;
       } else {
         return false;
@@ -42,7 +42,7 @@ class Ship {
       
     } else if (this === alienShip[i]) {
       if (ussAssembly.hull <= 0) {
-        let alienVictory = `GAME OVER - Your ship was destroyed by AlienShip${i+1} :(`
+        let alienVictory = `GAME OVER - Your ship was destroyed by Alien Ship ${i+1} :( Click 'Reset' to try again.`
         console.log(alienVictory);
         alert(alienVictory);
         return true;
@@ -56,16 +56,16 @@ class Ship {
     if (Math.random() < this.accuracy) {
       if (this === ussAssembly) {
         alienShip[i].hull -= ussAssembly.firepower;
-        console.log(`You hit AlienShip${i+1}! It took ${ussAssembly.firepower} damage. It's hull is now: ${alienShip[i].hull}`);
+        console.log(`You hit Alien Ship ${i+1}! It took ${ussAssembly.firepower} damage. It's hull is now: ${alienShip[i].hull}`);
       } else if (this === alienShip[i]) {
           ussAssembly.hull -= alienShip[i].firepower;
-          console.log(`AlienShip${i+1} hit you! Your ship took ${alienShip[i].firepower} damage from AlienShip${i+1}. Your hull is now: ${ussAssembly.hull}`);
+          console.log(`Alien Ship ${i+1} hit you! Your ship took ${alienShip[i].firepower} damage from Alien Ship ${i+1}. Your hull is now: ${ussAssembly.hull}`);
         } 
     } else {
       if (this === ussAssembly) {
           console.log('You missed! Take cover!');
       } else if (this === alienShip[i]) {
-          console.log(`AlienShip${i+1} missed! Take your best shot!`);
+          console.log(`Alien Ship ${i+1} missed! Take your best shot!`);
       }
     }  
   }
@@ -95,22 +95,24 @@ console.log(ussAssembly);
 console.log(alienShip);
 
 // Battle against each alien ship
-for (var i = 0; i < alienShip.length; i++) {
-  while (alienShip[i].hull > 0 && ussAssembly.hull > 0) {
-    ussAssembly.attack();
-    // checking to see if alienShip[i]'s hull is < 0
-    if (ussAssembly.checkHull() === true) {
-      continue;
-    } else {
-        alienShip[i].attack();
-         // checking to see if ussAssembly's hull is < 0
-        if (alienShip[i].checkHull() === true) {
-          break;
+function battle () {
+  for (i = 0; i < alienShip.length; i++) {
+    while (alienShip[i].hull > 0 && ussAssembly.hull > 0) {
+      ussAssembly.attack();
+      // checking to see if alienShip[i]'s hull is < 0
+      if (ussAssembly.checkOpponentHull() === true) {
+        continue;
+      } else {
+          alienShip[i].attack();
+          // checking to see if ussAssembly's hull is < 0
+          if (alienShip[i].checkOpponentHull() === true) {
+            break;
+          }
         }
-      }
-  } 
-  if (promptNextRound() === false) {
-    break;
+    } 
+    if (promptNextRound() === false) {
+      break;
+    }
   }
 }
 
@@ -118,14 +120,14 @@ for (var i = 0; i < alienShip.length; i++) {
 function promptNextRound() {
   let battleNum = `Battle #${i+2}`;
   if (battleNum === `Battle #7` && ussAssembly.hull > 0) {
-    let victory = `VICTORY - You've destroyed all the alienShips!`
+    let victory = `VICTORY - You've destroyed all the Alien Ships! Click 'Reset' to play again.`
     console.log(victory);
     alert(victory);
   }
   if (battleNum !== `Battle #7` && ussAssembly.hull > 0) {
-    let decision = prompt(`You destroyed AlienShip${i+1}! You won the battle, but not yet the war... Would you like to continue the fight? Please enter 'Attack' or 'Retreat'`, 'Attack or Retreat');
+    let decision = prompt(`You destroyed Alien Ship ${i+1}! You won the battle, but not yet the war... Would you like to continue the fight? Please enter 'Attack' or 'Retreat'`, 'Attack or Retreat');
     if (decision === 'Retreat') {
-      let whiteFlag = 'GAME OVER - The Aliens have proven to be a formidable opponent.'
+      let whiteFlag = 'GAME OVER - The Aliens have proven to be a formidable opponent. It was gallant effort. Click \'Reset\' to try again.'
       console.log(whiteFlag);
       alert(whiteFlag);
       return false;
@@ -134,7 +136,7 @@ function promptNextRound() {
       return true;
     } else {
       while (decision !== 'Attack' || decision !== 'Retreat') {
-        decision = prompt(`You destroyed AlienShip${i+1}! You won the battle, but not yet the war... Would you like to continue the fight? Please enter 'Attack' or 'Retreat'`, 'Attack or Retreat');
+        decision = prompt(`You destroyed Alien Ship ${i+1}! You won the battle, but not yet the war... Would you like to continue the fight? Please enter 'Attack' or 'Retreat'`, 'Attack or Retreat');
         if (decision === 'Attack') {
           console.log(battleNum);
           break;
@@ -143,3 +145,17 @@ function promptNextRound() {
     }
   }
 }
+
+//Start Button
+function beginGame() {
+  console.log(`Battle #1`);
+  battle();
+} 
+const startButton = document.querySelector('.start');startButton.onclick = beginGame;
+
+// Reset Button
+function resetPage() {
+  window.location.reload();
+} 
+const resetButton = document.querySelector('.reset');
+resetButton.onclick = resetPage;
