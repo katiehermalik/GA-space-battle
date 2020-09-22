@@ -1,6 +1,7 @@
 :root {
   --main-color: rgb(235, 183, 14);
   --active-color: rgba(229, 91, 94, .9);
+  --text-and-border: rgb(31, 58, 71);
 }
 * {
   -webkit-box-sizing: border-box;
@@ -47,10 +48,11 @@ h1 {
   text-align: center;
   border-radius: 50px;
   text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.73);
-  border: 2px black dotted;
+  border: 2px var(--text-and-border) solid;
 }
 
 .start {
+  color: var(--text-and-border);
   position: relative;
   font-size: 16px;
   padding: 10px, 20px;
@@ -60,10 +62,11 @@ h1 {
   background-color: var(--main-color);
   -webkit-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.75);
           box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.75);
-  border: 2px black dotted;
+  border: 2px var(--text-and-border) solid;
   outline: none;
 }
 .start:active {
+  color: var(--text-and-border);
   position: relative;
   font-size: 16px;
   padding: 10px, 20px;
@@ -71,11 +74,13 @@ h1 {
   height: 40px;
   border-radius: 20px;
   background-color: var(--active-color);;
-  border: 2px black dotted;
+  border: 2px var(--text-and-border) solid;
   outline: none;
 }
+
 .reset {
   position: relative;
+  color: var(--text-and-border);
   font-size: 16px;
   padding: 10px, 20px;
   width: 100px;
@@ -84,17 +89,19 @@ h1 {
   background-color: var(--main-color);
   -webkit-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.75);
           box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.75);
-  border: 2px black dotted;
+  border: 2px var(--text-and-border) solid;
   outline: none;
 }
 
 .reset:active {
   position: relative;
+  color: var(--text-and-border);
   font-size: 16px;
   padding: 10px, 20px;
   width: 100px;
   height: 40px;
   border-radius: 20px;
   background-color: var(--active-color);
+  border: 2px var(--text-and-border) solid;
   outline: none;
 }

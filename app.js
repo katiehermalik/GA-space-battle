@@ -127,7 +127,7 @@ function promptNextRound() {
   if (battleNum !== `Battle #7` && ussAssembly.hull > 0) {
     let decision = prompt(`You destroyed Alien Ship ${i+1}! You won the battle, but not yet the war... Would you like to continue the fight? Please enter 'Attack' or 'Retreat'`, 'Attack or Retreat');
     if (decision === 'Retreat') {
-      let whiteFlag = 'GAME OVER - The Aliens have proven to be a formidable opponent. It was gallant effort. Click \'Reset\' to try again.'
+      let whiteFlag = 'GAME OVER - The Aliens have proven to be a formidable opponent. It was a gallant effort. Click \'Reset\' to try again.'
       console.log(whiteFlag);
       alert(whiteFlag);
       return false;
